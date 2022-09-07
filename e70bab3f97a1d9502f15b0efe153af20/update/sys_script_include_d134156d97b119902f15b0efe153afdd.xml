@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
     <sys_script_include action="INSERT_OR_UPDATE">
         <access>public</access>
-        <active>true</active>
+        <active>false</active>
         <api_name>global.dmn_demand_processFlowFormatter</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
+        <description>This is an example of how you would re-implement the process flow formatter logic for the demand table so that it doesn't use a global business rule with a bunch of duplicated logic from other rules</description>
         <name>dmn_demand_processFlowFormatter</name>
         <script><![CDATA[var dmn_demand_processFlowFormatter = Class.create();
 dmn_demand_processFlowFormatter.prototype = Object.extendsObject(global.nfProcessFlowFormatterCore, {
