@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>public</access>
+        <active>true</active>
+        <api_name>global.dmn_demand_processFlowFormatter</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>dmn_demand_processFlowFormatter</name>
+        <script><![CDATA[var dmn_demand_processFlowFormatter = Class.create();
+dmn_demand_processFlowFormatter.prototype = Object.extendsObject(global.nfProcessFlowFormatterCore, {
+    type: 'dmn_demand_processFlowFormatter',
+	
+	initializePartTwo: function() {
+		this.deferredStates = ["10","7","5"];
+	},
+	getStagesToKeep: function() {
+		//Use "this.recordGR" to access the record being passed in
+		//Return an array of values corresponding to the 
+		//    "name" of the stage in from sys_process_flow
+		//Return a null value to keep all stages
+		
+		if ( !this.recordGR.canRead() )
+			return [];
+		else
+			return null;		
+	},
+	getStagesToRemove: function() {
+		//Use "this.recordGR" to access the record being passed in
+		//Return an array of values corresponding to the 
+		//    "name" of the stage in from sys_process_flow
+		var removedStages = [];
+		
+		if ( defferedStates.indexOf( this.recordGR.getValue("state") ) ) {
+			removedStages.push("9"); //Closed
+		} else {
+			removedStages.push("10"); //Deferred
+		}
+		return removedStages;
+	},
+	getVisitedStages: function() {
+		//Use "this.recordGR" to access the record being passed in
+		//Return an array of values corresponding to the 
+		//    "name" of the stage in from sys_process_flow
+		//Return a null value to have all "past" stages marked as visited
+		var visited_states = this.recordGR.getValue('visited_state') || '';
+        visited_states = visited_states.split(",");
+		
+		return visited_states;
+	},
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>nick.fajardo@icf</sys_created_by>
+        <sys_created_on>2022-09-07 13:47:24</sys_created_on>
+        <sys_id>d134156d97b119902f15b0efe153afdd</sys_id>
+        <sys_name>dmn_demand_processFlowFormatter</sys_name>
+        <sys_package display_value="nfDynamicProcessFlow" source="e70bab3f97a1d9502f15b0efe153af20">e70bab3f97a1d9502f15b0efe153af20</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="nfDynamicProcessFlow">e70bab3f97a1d9502f15b0efe153af20</sys_scope>
+        <sys_update_name>sys_script_include_d134156d97b119902f15b0efe153afdd</sys_update_name>
+    </sys_script_include>
+</record_update>

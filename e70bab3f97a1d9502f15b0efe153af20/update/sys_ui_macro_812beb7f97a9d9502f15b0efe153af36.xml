@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_macro">
+    <sys_ui_macro action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <description>Defines the contents of the flow_formatter formatter that uses the information in the sys_flow_formatter table to build a process flow diagram on a form</description>
+        <media_type/>
+        <name>dynamic_process_flow</name>
+        <scoped_name/>
+        <sys_class_name>sys_ui_macro</sys_class_name>
+        <sys_created_by>nick.fajardo@icf</sys_created_by>
+        <sys_created_on>2022-09-02 14:13:06</sys_created_on>
+        <sys_id>812beb7f97a9d9502f15b0efe153af36</sys_id>
+        <sys_name>dynamic_process_flow</sys_name>
+        <sys_package display_value="nfDynamicProcessFlow" source="e70bab3f97a1d9502f15b0efe153af20">e70bab3f97a1d9502f15b0efe153af20</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="nfDynamicProcessFlow">e70bab3f97a1d9502f15b0efe153af20</sys_scope>
+        <sys_update_name>sys_ui_macro_812beb7f97a9d9502f15b0efe153af36</sys_update_name>
+        <xml><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<j:jelly xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null" trim="false">
+	<g2:evaluate var="jvar_flows" jelly="true" object="true">
+		var flows = null;
+		var tableName = current.getTableName();
+
+		var dict = new GlideRecord('sys_dictionary');
+		dict.get("name", current.getTableName() );
+		var scope = dict.sys_scope.scope+"";
+
+		var processor = null;
+		var evalString = "new "+scope+"."+tableName+"_processFlowFormatter(current)"
+
+		try {
+			processor = GlideEvaluator.evaluateString( evalString );
+		  flows = processor.getStages();
+		} catch (e) {
+		  gs.info( e );
+		}
+		flows;
+	</g2:evaluate>
+	<j2:if test="$[jvar_flows == null]">
+		<g2:flow_formatter var="jvar_flows" table="$[${ref_parent}.getRecordClassName()]" current="$[${ref_parent}]"/>
+		<j2:set var="jvar_flow_size" value="$[jvar_flows.size()]"/>
+	</j2:if>
+<tr><td>
+	<ol tabindex="0" class="process-breadcrumb process-breadcrumb-border">
+		<j2:forEach items="$[jvar_flows]" var="jvar_flow" indexVar="jvar_index">
+			<j2:set var="jvar_flow_step" value="$[jvar_index + 1] ${gs.getMessage('of')} $[jvar_flow_size]"/>
+			<j2:choose>
+				<j2:when test="$[jvar_flow.getParameter('state') == 'current']">
+					<j2:set var="jvar_flow_class" value="active"/>
+					<j2:set var="jvar_flow_stage" value="${gs.getMessage('Current stage')}"/>
+				</j2:when>
+				<j2:when test="$[jvar_flow.getParameter('state') == 'past']">
+					<j2:set var="jvar_flow_class" value="completed disabled"/>
+					<j2:set var="jvar_flow_stage" value="${gs.getMessage('Previous stage')}"/>
+				</j2:when>
+				<j2:otherwise>
+					<j2:set var="jvar_flow_class" value="disabled"/>
+					<j2:set var="jvar_flow_stage" value="${gs.getMessage('Next stage')}"/>
+				</j2:otherwise>
+			</j2:choose>
+			<li class="$[jvar_flow_class]" data-state="$[jvar_flow.getParameter('state')]">
+				<a href="javascript:void(0);" tabindex="-1" role="presentation"
+				   aria-label="$[jvar_flow_stage] $[jvar_flow.getLabel()] $[jvar_flow_step]">
+					$[jvar_flow.getLabel()]
+				</a>
+			</li>
+		</j2:forEach>
+	</ol>
+</td></tr>
+</j:jelly>
+]]></xml>
+    </sys_ui_macro>
+</record_update>

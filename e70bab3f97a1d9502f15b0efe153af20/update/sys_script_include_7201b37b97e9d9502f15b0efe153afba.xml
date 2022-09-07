@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>global.TABLENAME_processFlowFormatter</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>TABLENAME_processFlowFormatter</name>
+        <script><![CDATA[var TABLENAME_processFlowFormatter = Class.create();
+TABLENAME_processFlowFormatter.prototype = Object.extendsObject(global.nfProcessFlowFormatterCore, {
+    type: 'TABLENAME_processFlowFormatter',
+	initializePartTwo: function() {
+		
+	},
+	getStagesToKeep: function() {
+		//Use "this.recordGR" to access the record being passed in
+		//Return an array of values corresponding to the 
+		//    "name" of the stage in from sys_process_flow
+		//Return a null value to keep all stages
+		
+		return null;
+	},
+	getStagesToRemove: function() {
+		//Use "this.recordGR" to access the record being passed in
+		//Return an array of values corresponding to the 
+		//    "name" of the stage in from sys_process_flow
+		var removeStages = [];
+		
+		return removeStages;
+	},
+	getVisitedStages: function() {
+		//Use "this.recordGR" to access the record being passed in
+		//Return an array of values corresponding to the 
+		//    "name" of the stage in from sys_process_flow
+		//Return a null value to have all "past" stages marked as visited
+		
+		return null;
+	},
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>nick.fajardo@icf</sys_created_by>
+        <sys_created_on>2022-09-02 14:39:12</sys_created_on>
+        <sys_id>7201b37b97e9d9502f15b0efe153afba</sys_id>
+        <sys_name>TABLENAME_processFlowFormatter</sys_name>
+        <sys_package display_value="nfDynamicProcessFlow" source="e70bab3f97a1d9502f15b0efe153af20">e70bab3f97a1d9502f15b0efe153af20</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="nfDynamicProcessFlow">e70bab3f97a1d9502f15b0efe153af20</sys_scope>
+        <sys_update_name>sys_script_include_7201b37b97e9d9502f15b0efe153afba</sys_update_name>
+    </sys_script_include>
+</record_update>
