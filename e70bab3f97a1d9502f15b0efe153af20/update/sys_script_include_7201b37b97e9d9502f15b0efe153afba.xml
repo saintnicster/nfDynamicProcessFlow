@@ -5,7 +5,15 @@
         <api_name>global.TABLENAME_processFlowFormatter</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
+        <description>Use this as a template for future implementations.&#13;
+&#13;
+The below methods are called directly by the core logic, so if you re-implement them, be sure to keep the function signature the same.&#13;
+Please do not override INITIALIZE() from the class, you will likely break things.  Use "initializePartTwo" if you want to pull any common data between methods.&#13;
+&#13;
+If filtering stanges, your best bet is to only implement either "getStagesToKeep" or "getStagesToRemove".  Doing both will likely cause headaches.&#13;
+&#13;
+"getVisitedStages" can be used if you're skipping visible stages in the past, but still want to show them (minus checkmarks). Depending on your use case, it might be &#13;
+better to just remove those stages from the overall display</description>
         <name>TABLENAME_processFlowFormatter</name>
         <script><![CDATA[var TABLENAME_processFlowFormatter = Class.create();
 TABLENAME_processFlowFormatter.prototype = Object.extendsObject(global.nfProcessFlowFormatterCore, {

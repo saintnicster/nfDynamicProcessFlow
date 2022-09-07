@@ -5,7 +5,9 @@
         <api_name>global.nfProcessFlowFormatterCore</api_name>
         <caller_access/>
         <client_callable>false</client_callable>
-        <description/>
+        <description>Based class to be extended when enabling this process flow.&#13;
+&#13;
+Better to copy the "TABLENAME_processFlowFormatter" class into your scope and start from there.</description>
         <name>nfProcessFlowFormatterCore</name>
         <script><![CDATA[var nfProcessFlowFormatterCore = Class.create();
 nfProcessFlowFormatterCore.prototype = {
