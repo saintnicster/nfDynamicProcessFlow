@@ -11,6 +11,8 @@
 TABLENAME_processFlowFormatter.prototype = Object.extendsObject(global.nfProcessFlowFormatterCore, {
     type: 'TABLENAME_processFlowFormatter',
 	initializePartTwo: function() {
+		//Use this to set any other informatiom that might need to be shared across your class
+		//  methods.  Please do not override initialize()
 		
 	},
 	getStagesToKeep: function() {

@@ -13,10 +13,10 @@ nfProcessFlowFormatterCore.prototype = {
 		this.recordGR = currentGR;
 		
 		this.initializePartTwo();
-		
-		this.choices = this.getStages();
 	},
 	initializePartTwo: function() {
+		//Use this to set any other informatiom that might need to be shared across your class
+		//  methods.  Please do not override initialize()
 		
 	},
 	getStagesToKeep: function() {

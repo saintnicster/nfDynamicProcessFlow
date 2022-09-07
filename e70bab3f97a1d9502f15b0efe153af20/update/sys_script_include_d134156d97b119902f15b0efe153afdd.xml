@@ -12,6 +12,9 @@ dmn_demand_processFlowFormatter.prototype = Object.extendsObject(global.nfProces
     type: 'dmn_demand_processFlowFormatter',
 	
 	initializePartTwo: function() {
+		//Use this to set any other informatiom that might need to be shared across your class
+		//  methods.  Please do not override initialize()
+		
 		this.deferredStates = ["10","7","5"];
 	},
 	getStagesToKeep: function() {

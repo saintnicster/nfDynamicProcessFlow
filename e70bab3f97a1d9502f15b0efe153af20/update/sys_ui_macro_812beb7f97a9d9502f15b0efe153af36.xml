@@ -2,7 +2,12 @@
     <sys_ui_macro action="INSERT_OR_UPDATE">
         <active>true</active>
         <category>general</category>
-        <description>Defines the contents of the flow_formatter formatter that uses the information in the sys_flow_formatter table to build a process flow diagram on a form</description>
+        <description>Copied from the "process_flow" macro from out of the box.&#13;
+&#13;
+To use this macro, create a class/script include inside the SAME SCOPE as the table, copying "TABLENAME_processFlowFormatter".  &#13;
+Set up the values in the SYS_PROCESS_FLOW table like you would with the out of the box.&#13;
+&#13;
+Defines the contents of the flow_formatter formatter that uses the information in the sys_process_flow table to build a process flow diagram on a form</description>
         <media_type/>
         <name>dynamic_process_flow</name>
         <scoped_name/>
@@ -30,7 +35,7 @@
 
 		try {
 			processor = GlideEvaluator.evaluateString( evalString );
-		  flows = processor.getStages();
+			flows = processor.getStages();
 		} catch (e) {
 		  gs.info( e );
 		}
