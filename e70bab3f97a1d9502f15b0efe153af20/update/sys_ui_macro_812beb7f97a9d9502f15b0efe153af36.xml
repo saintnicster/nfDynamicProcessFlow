@@ -41,10 +41,8 @@ Defines the contents of the flow_formatter formatter that uses the information i
 		}
 		flows;
 	</g2:evaluate>
-	<j2:if test="$[jvar_flows == null]">
-		<g2:flow_formatter var="jvar_flows" table="$[${ref_parent}.getRecordClassName()]" current="$[${ref_parent}]"/>
-		<j2:set var="jvar_flow_size" value="$[jvar_flows.size()]"/>
-	</j2:if>
+	<j2:set var="jvar_flow_size" value="$[jvar_flows.size()]"/>
+<j2:if test="$[jvar_flow_size != 0 ]">
 <tr><td>
 	<ol tabindex="0" class="process-breadcrumb process-breadcrumb-border">
 		<j2:forEach items="$[jvar_flows]" var="jvar_flow" indexVar="jvar_index">
@@ -72,7 +70,14 @@ Defines the contents of the flow_formatter formatter that uses the information i
 		</j2:forEach>
 	</ol>
 </td></tr>
-</j:jelly>
-]]></xml>
+</j2:if>	
+<j2:if test="$[jvar_flow_size == 0 ]">
+	<tr id="chevron_placeholder"></tr>
+	<script>
+		//placeholder, inserted tbody, inserted table, inserted DIV. Hide and collapse the formatter
+		jQuery("#chevron_placeholder").parent().parent().parent().hide();
+	</script>
+</j2:if>
+</j:jelly>]]></xml>
     </sys_ui_macro>
 </record_update>
